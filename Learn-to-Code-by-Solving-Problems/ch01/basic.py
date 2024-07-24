@@ -28,3 +28,10 @@ print(aaabcaa__count)
 
 ababa__count = 'ababa'.count('aba')
 print(ababa__count)
+
+dollars = 250
+dollars + 1
+print(dollars) # 251를 기대 했지만 250이 출력 된다.
+
+dollars = dollars + 1
+print(dollars) # 결과를 보존하고 있어 할당문이 필요하다.
