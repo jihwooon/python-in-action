@@ -11,16 +11,23 @@ WordCount - https://dmoj.ca/problem/dmopc15c7p2
 """
 
 origin_text = input()
-
 text = origin_text.lower()
+text_length = len(text)
+
 if origin_text != text:
   print("오류: 입력은 소문자이여야합니다.")
   exit()
 
-text_length = len(text)
+if text[0] == ' ' or text[-1] == ' ':
+  exit("오류: 문자열 시작과 끝에 공백이 있습니다.")
+
 if text_length > 80:
   print("오류: 한 라인에 최대 길이는 80자입니다.")
   exit()
 
+if text.count(' ') != 0 or text.count('  ') != 0 or text.count('   ') != 0:
+  exit("오류: 문자열에 공백이 연속적으로 있습니다.")
+
 count = text.count(' ') + 1
+
 print(count)
