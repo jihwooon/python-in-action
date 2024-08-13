@@ -12,12 +12,31 @@ CardGame - https://dmoj.ca/problem/ccc99s1
 게임이 끝나면 각 플레이어의 총 점수를 두 줄로 출력합니다.
 """
 
-s = input();
-print(s)
+def calculate_scores(deck):
+  high_cards = {'jack': 1, 'queen': 2, 'king': 3, 'ace': 4}
+  player_scores = {'A': 0, 'B': 0}
+  current_player = 'A'
 
-def intro():
-  print('******')
-  print('WELCOME')
-  print('******')
+  i = 0
+  while i < len(deck):
+    card = deck[i]
+    if card in high_cards:
+      required_cards = high_cards[card]
+      if i + required_cards < len(deck) and all(deck[i + j] in high_cards for j in range(1, required_cards + 1)):
+        player_scores[current_player] += required_cards
+        print(f"Player {current_player} 득점 {required_cards}점")
+    current_player = 'B' if current_player == 'A' else 'A'
+    i += 1
 
-intro()
+  print(f"Player A: {player_scores['A']} point(s).")
+  print(f"Player B: {player_scores['B']} point(s).")
+
+# Example usage:
+deck = [
+  'ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace',
+  '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace',
+  '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace',
+  '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'
+]
+
+calculate_scores(deck)
